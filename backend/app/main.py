@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from app.services.products_mock import search_products_mock
 
 app = FastAPI(
     title="MartCart Conversational Commerce AI Agent API",
@@ -7,10 +8,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configure CORS so your React Native mobile app can talk to it later
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Adjust this in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,3 +23,8 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "version": "1.0.0"}
+
+@app.get("/api/products")
+def get_products(search: str = Query(None, description="Search keyword for catalog products")):
+    products = search_products_mock(search)
+    return {"count": len(products), "results": products}
