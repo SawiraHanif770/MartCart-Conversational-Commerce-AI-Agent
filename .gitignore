@@ -1,0 +1,22 @@
+# Virtual Environment
+backend/venv/
+venv/
+.venv/
+
+# Python caching
+__pycache__/
+*.pyc
+
+# Environment variables (API Keys hidden)
+backend/.env
+.env
+
+# Temporary Audio files
+backend/*.mp3
+backend/*.wav
+*.mp3
+*.wav
+
+# Frontend dependencies (jab install hongi)
+mobile-app/node_modules/
+mobile-app/.expo/
