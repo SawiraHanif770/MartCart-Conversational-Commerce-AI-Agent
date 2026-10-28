@@ -1,0 +1,14 @@
+
+
+services:
+  martcart-backend:
+    build: .
+    image: martcart-app:latest
+    container_name: martcart_fyp_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Yeh bind mount aapke local host computer ke code ko container se link karega
+    env_file:
+      - ./backend/.env  # Aapke backend folder wali .env file ko connect karne ke liye
+    restart: unless-stopped
